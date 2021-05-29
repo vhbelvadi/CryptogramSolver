@@ -34,3 +34,21 @@
 # 2.
 # 3.
 #
+
+# IMPORTS
+import re  # RegEx to make sure the user entered a cryptogram
+
+
+def acceptor():
+    cryptogram = input("Enter the cipher:\n")
+    if not re.search(r'^[a-zA-Z\s\D\.\,\'\"\?\!]+$', cryptogram):
+        print('Invalid cryptogram. Please retry.\n\n')
+        acceptor()
+    else:
+        return cryptogram
+
+def main():
+    cipher = acceptor()
+
+if __name__ == '__main__':
+    main()
