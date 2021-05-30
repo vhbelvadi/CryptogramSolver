@@ -41,16 +41,16 @@ import re  # RegEx to make sure the user entered a cryptogram
 
 def acceptor():
     cryptogram = input("Enter the cipher:\n")
-    if not re.search(r'^[a-zA-Z\s\D.,\'\"?!]+$', cryptogram):
+    if re.search(r'^[a-zA-Z\s\D.,\'\"?!]+$', cryptogram):
+        return str(cryptogram)
+    else:
         print('Invalid cryptogram. Please retry.\n\n')
         acceptor()
-    else:
-        return cryptogram
 
 
 def main():
     cipher = acceptor()
-    print(cipher)  # DELETE THIS LINE ONCE THE PROGRAM IS COMPLETE
+    print('Cryptogram: ' + cipher)  # DELETE THIS LINE ONCE THE PROGRAM IS COMPLETE
 
 
 if __name__ == '__main__':
