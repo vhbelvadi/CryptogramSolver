@@ -15,7 +15,7 @@
 #
 # APPROACH:
 #
-# 1. ACCEPT THE CIPHER (VHB)
+# 1. ACCEPT THE CIPHER (VHB) (DONE – TESTING NEEDED)
 # 2. ACCEPT THE CLUE (VHB)
 # 3. DUPLICATE THE CIPHER (VHB)
 # 4. PARSE THE CIPHER AT SPACES OR PUNCTUATION INTO AN ARRAY (SS)
@@ -48,7 +48,7 @@ def acceptor():
     # Get an input from the user
     cipher = input("Enter the cipher:\n")
     # Make sure the user does not want to not quitting
-    if not cipher == 'X':
+    if not (cipher == 'X' or cipher == 'x'):
         # Check if input follows RegEx for a typical cryptoquip
         if not re.search(r'^[a-zA-Z\s\D.,\-\'\"?!]+$', cipher):
             # If it does not follow RegEx inform the user and restart the function
