@@ -65,18 +65,43 @@ def cipher_acceptor():
         # Be courteous
         quit("\nThank you for trying out this program.")
 
+
 def clue_acceptor():
     # Ask the user to give us x=y type clue for our cipher
     global clue_key
     global clue_value
     clue = input("\nEnter the clue (e.g. w=c) for the cipher:\n")
+    # Make sure the clue is not empty
+    if not (clue is None or clue == ''):
+        # Strip all spaces and convert to lowercase
+        clue = re.sub(r'(\s+)', "", clue.rstrip()).lower()  # rstrip() removes trailing spaces
+        # RegEx to check the clue is of the form x=y that we need
+        if re.search(r'^[a-z]+=+[a-z]$', clue):
+            # Split at '=' and save the first part [0] as key and the second part [1] as value
+            clue_key = re.split("=", clue)[0]
+            clue_value = re.split("=", clue)[1]
+        elif not (clue == 'X' or clue == 'x'):
+            # If the clue is not of the format we need
+            print("\nSomething is wrong with your clue. Please re-enter the clue.\n\n")
+            clue_acceptor()
+        else:
+            # If the user wants to quit, let's be courteous
+            quit("\nThank you for trying out this program.")
+    elif clue == 'X' or clue == 'x':
+        # Again, be courteous
+        quit("\nThank you for trying out this program.")
+    else:
+        # If the clue is blank
+        print("\nYou have not entered a clue. Please retry or hit 'X' to quit.\n\n")
+        clue_acceptor()
 
 
 def main():
     # Call acceptor() to accept an input cipher
     cipher_acceptor()
     clue_acceptor()
-    print('\nCryptogram: "' + cipher + '" with ' + clue_key + '=' + clue_value + '.')  # DELETE THIS LINE WHEN THE PROGRAM IS COMPLETE
+    # DELETE THE LINE BELOW WHEN THE PROGRAM IS COMPLETE
+    print('\nCryptogram: "' + cipher + '" with ' + clue_key + '=' + clue_value + '.')
 
 
 if __name__ == '__main__':
