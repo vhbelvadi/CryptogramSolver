@@ -38,23 +38,26 @@ import re  # RegEx to make sure the user entered a cryptogram
 
 # GLOBAL VARIABLES
 cipher: str  # Declaring a string but not giving it a value
+# Prepping two variables for key and value e.g. h=b where h is the key and b is the value
+clue_key: str  # Declaring a string but not giving it a value (see comment in the next line)
+clue_value: str  # Python doesn't have char type: a char is a string of length 1
 
 
-def acceptor():
+def cipher_acceptor():
     # The line below tells Python we're going to use the same
     # global variable called cipher and that we are not creating
     # a new function-specific one also called cipher
     global cipher
     # Get an input from the user
     cipher = input("Enter the cipher:\n")
-    # Make sure the user does not want to not quitting
-    if not (cipher == 'X' or cipher == 'x'):
+    # Make sure the user does not want to not quitting, and quit if a cipher is not entered
+    if not (cipher == 'X' or cipher == 'x' or cipher is None or cipher == ''):
         # Check if input follows RegEx for a typical cryptoquip
         if not re.search(r'^[a-zA-Z\s\D.,\-\'\"?!]+$', cipher):
             # If it does not follow RegEx inform the user and restart the function
             # and give the user an option to quit
             print('\nInvalid cryptogram. Please retry or hit X to quit.\n\n')
-            acceptor()
+            cipher_acceptor()
         else:
             # If the RegEx is fine, replace double spaces with single spaces and remove trailing spaces
             cipher = re.sub(r'(\s\s+)', " ", cipher.rstrip())  # rstrip() removes trailing spaces
@@ -62,11 +65,18 @@ def acceptor():
         # Be courteous
         quit("\nThank you for trying out this program.")
 
+def clue_acceptor():
+    # Ask the user to give us x=y type clue for our cipher
+    global clue_key
+    global clue_value
+    clue = input("\nEnter the clue (e.g. w=c) for the cipher:\n")
+
 
 def main():
     # Call acceptor() to accept an input cipher
-    acceptor()
-    print('\nCryptogram: ' + cipher)  # DELETE THIS LINE WHEN THE PROGRAM IS COMPLETE
+    cipher_acceptor()
+    clue_acceptor()
+    print('\nCryptogram: "' + cipher + '" with ' + clue_key + '=' + clue_value + '.')  # DELETE THIS LINE WHEN THE PROGRAM IS COMPLETE
 
 
 if __name__ == '__main__':
