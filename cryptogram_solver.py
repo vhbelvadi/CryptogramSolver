@@ -53,7 +53,7 @@ def cipher_acceptor():
     # Make sure the user does not want to not quitting, and quit if a cipher is not entered
     if not (cipher == 'X' or cipher == 'x' or cipher is None or cipher == ''):
         # Check if input follows RegEx for a typical cryptoquip
-        if not re.search(r'^[a-zA-Z\s\D.,\-\'\"?!]+$', cipher):
+        if not re.search(r'^(?!.*/)(?!.*\\)(?!.*_)[a-zA-Z\s\D.,\-\'\"?!]+$', cipher):
             # If it does not follow RegEx inform the user and restart the function
             # and give the user an option to quit
             print('\nInvalid cryptogram. Please retry or hit X to quit.\n\n')
@@ -101,7 +101,7 @@ def main():
     cipher_acceptor()
     clue_acceptor()
     # DELETE THE LINE BELOW WHEN THE PROGRAM IS COMPLETE
-    print('\nCryptogram: "' + cipher + '" with ' + clue_key + '=' + clue_value + '.')
+    print('\nCryptogram: ' + cipher + '\nClue: ' + clue_key + '=' + clue_value + '.')
 
 
 if __name__ == '__main__':
