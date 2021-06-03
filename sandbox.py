@@ -135,9 +135,17 @@ def sort_list_by_length():
 def dictionary_builder(original, compare):
     for original_element in original:
         for compare_element in compare:
-            dictionary_memory[original_element] = compare_element
-            compare.remove(compare_element)
-            break
+            if compare_element == original_element:
+                dictionary_memory[compare.index(compare_element)] = original.index(original_element)
+                # original.remove(original_element)
+
+# def dictionary_builder(original, compare):
+#     for original_element in original:
+#         for compare_element in compare:
+#             if original_element == compare_element:
+#                 dictionary_memory[original_element] = compare.index(compare_element)
+#                 compare.remove(compare_element)
+#                 break
 
 
 if __name__ == '__main__':
