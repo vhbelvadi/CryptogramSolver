@@ -1,0 +1,25 @@
+I have a cap.
+
+VHB:
+J gefy e hek. *
+J gefy e hek.
+j=i
+
+SS: (J gefy e hek.)(j=i)
+O: ['j', 'gefy', 'e', 'hek.']
+Ord: ['e', 'j', 'hek.', 'gefy']
+
+SPK: (O)(Ord)
+Dictionary: [0:2, 1:0, 2:3, 3:1]
+
+S: (Ord)(j=i)
+Ord_Clue: ['e', 'I', 'hek.', 'gefy']
+
+A:
+Solution_dictionaries:
+[{e:a, g:h, f:v, y:e, h:c, k:p}, {e:g, g:h, f:l, y:e, h:c, k:p}]
+
+SKK: (Solution_dictionaries)(j=i)(dictionary)
+[['a', 'i', 'cap.', 'have'], ['g', 'i', 'cgp.', 'hgle']]
+["I have a cap.", "I hgle g cgp."]
+PRINT
